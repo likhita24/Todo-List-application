@@ -50,19 +50,12 @@ def add(request):
                                                   query })
 
 def remove(request):
-    #id = request.GET["userid"]
     taskname = request.GET["taskname"]
-    #sqlquery = "delete from todopages_todoitems where user_id_id={0} and Task_name='{1}'".format(id, taskname)
-    #with connection.cursor() as cursor:
-    #    cursor.execute(sqlquery)
     if request.session.has_key('username'):
         name = request.session['username']
         query = users.objects.filter(username = name) 
         todoitems.objects.filter(user_id_id = query[0].id, Task_name = taskname).delete()
         return JsonResponse({ 'is_success': True })
-    #query = users.objects.filter(username = name) 
-    #results = todoitems.objects.filter(user_id_id = query[0].id)
-    #return render(request, 'todopages/add.html', {"items" : results})
         
 
 def logout(request):
