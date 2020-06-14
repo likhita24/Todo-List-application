@@ -1,0 +1,69 @@
+﻿{% load static %}
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>create</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/x-ico" href="{% static 'todo_images/correct.ico' %}" sizes="16x16">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script>
+        function deletetask(taskname) {
+            $.ajax({
+                url: '/removetask',
+                type: 'get',
+                data:
+                {
+                    'taskname': taskname
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.is_success) {
+                        $('#' + taskname).remove();
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body style="background-color:mistyrose">
+    <div class="container-fluid">
+        <h1 class="text-center">TODO LIST MAKER</h1>
+        <hr />
+        <div class="container-fluid"><a href="{% url 'logout' %}" style="font-size:large"><strong>Logout</strong></a></div>
+        <div class="container-fluid">
+            <form method="post" action="/add">
+                <br />
+                <div class="form-group">
+                    <label for="taskname" style="font-size: medium"><strong>TASK: </strong></label>
+                    <input type="text" id="taskname" name="taskname" class="form-group" style="border-radius: 3.5px; padding:5px" />
+                    {% csrf_token %}
+                    <button type="submit" style="border-radius:5px; padding:5px"><b> ADD </b></button>
+                </div>
+            </form>
+        </div>
+        <div class="container-fluid">
+            <p>
+                <div style="font-size:large">
+                    {% for p in person %}
+                        <strong>{{ p.username }}'s Tasks:</strong><br />
+                    {% endfor %}
+                </div>
+            </p>
+            <p>
+                <div class="container-fluid" style="font-size: medium">
+                    <ol>    
+                        {% for i in items %}
+                            <li id="{{ i.Task_name }}"><b> {{ i.Task_name }} </b><br /><button type="button" onclick="deletetask('{{ i.Task_name }}')" class="btn-danger"><b>Remove</b></button></li>
+                            <br />
+                        {% endfor %}    
+                    </ol>
+                </div>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

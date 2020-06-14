@@ -1,0 +1,50 @@
+{% load static %}
+<html>
+<head>
+    <title>Sign up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/x-ico" href="{% static 'todo_images/favicon.ico' %}">
+    <style type="text/css">
+        .center-block {
+            width: 500px;
+            padding: 40px;
+            background-color: rosybrown;
+            color: #0f0e30;
+            margin-top: 175px;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body class = "container-fluid" style="background-color:#f2dcdd">
+    <div class="container">
+        <div class="row">
+            <div class="center-block">
+                <h1 class="text-center">TODO LIST MAKER</h1>
+                <hr />
+                <form method="post" action="/signup">
+                    <div class="form-group">
+                        <label for="username"><strong>USERNAME : </strong></label>
+                        <input type="text" id="username" name="username" class="form-group" style="border-radius: 3.5px; padding:5px">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password"><strong>PASSWORD : </strong></label>
+                        <input type="password" id="pwd" name="password" class="form-group" style="border-radius: 3.5px; padding:5px"/>
+                    </div>
+                    
+                    <button class="btn-default" type="submit"><b>SIGN UP</b></button>
+                    <br />
+                    <br />
+                    {% csrf_token %}
+                    <p>
+                        Already have an account ?, <a href="{% url 'signinpage' %}" style="color:black"><strong>sign in</strong></a> here!
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body> 
+</html>

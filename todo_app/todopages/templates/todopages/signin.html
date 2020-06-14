@@ -1,0 +1,53 @@
+﻿{% load static %}
+<!DOCTYPE html>
+
+<html lang = "en" xmlns = "http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset = "utf-8" />
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <link rel = "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Sign in</title>
+    <link rel = "icon" type = "image/x-ico" href = "{% static 'todo_images/correct.ico' %}" sizes= "16x16">
+    <style type="text/css">
+        .center-block {
+            width: 500px;
+            padding: 60px;
+            background-color: rosybrown;
+            color: #0f0e30;
+            margin-top: 175px;
+            padding-top: 20px;
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+<body style="background-color:#f2dcdd">
+    <div class="container">
+        <div class="row">
+            <div class="center-block">
+                <h1 class="text-center">TODO LIST MAKER</h1>
+                <hr />
+                <form method="post" action="/signin">
+                    <div class="form-group">
+                        <label for="username"><strong>USERNAME : </strong></label>
+                        <input type="text" id="username" name="username" class="form-group" style="border-radius: 3.5px; padding:5px">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password"><strong>PASSWORD : </strong></label>
+                        <input type="password" id="pwd" name="password" class="form-group" style="border-radius: 3.5px; padding:5px"/>
+                    </div>
+                    
+                    <button type="submit" class="btn-default"><b>SIGN IN</b></button>
+                    <br />
+                    <br />
+                    {% csrf_token %}
+                    <p class="para">
+                        Don't have one ? then create one, <a href="{% url 'signuppage' %}" style="color:black"><strong>sign up</strong></a> here!
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
