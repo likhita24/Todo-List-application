@@ -35,4 +35,4 @@ jobs:
       run: |
         pip install pytest
         export PYTHONPATH=todo_app
-        pytest
+        pytest tests.py
