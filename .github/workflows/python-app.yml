@@ -34,4 +34,4 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        pytest
+        pytest -vs .github/Todo-List-application/todo_app/todopages/tests.py
